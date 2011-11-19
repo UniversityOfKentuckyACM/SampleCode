@@ -69,7 +69,3 @@ class Actor(pygame.sprite.Sprite):
 			Move rect+image (vel[0], vel[1]) pixels
 		"""
 		self.rect.move_ip((self.vel[0], self.vel[1]))
-
-		# keep torpedos in bounds
-		if self.rect.top > HEIGHT:
-			self.kill()

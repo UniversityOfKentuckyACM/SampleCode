@@ -6,6 +6,7 @@ import pygame.gfxdraw
 import util
 
 from Actor import Actor
+from Torpedo import Torpedo
 from Vector2 import Vector2
 from config import *
 from pygame.locals import *
@@ -41,12 +42,9 @@ class Graphics():
 		return self.player
 	
 	def addTorpedo(self, pos):
-		torp = Actor()
-		# assign torpedo image
-		torp.setImage(self.torpImage)
-		# assign it a coordinate and velocity
-		torp.setPos(pos[0], pos[1])
-		torp.setVel(Vector2(0,3))
+		# create a new torpedo and give it a position
+		torp = Torpedo(pos[0], pos[1])
+
 		# add it to render group
 		self.torpedoGroup.add(torp)
 

@@ -22,4 +22,4 @@ BACKGROUND_IMAGE = "sea.png"
 SUB_IMAGE = "sub.png"
 TORPEDO_IMAGE = "ship_fire.png"
 
-
+TORPEDO_VEL = (0,3)
