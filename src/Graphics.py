@@ -57,6 +57,15 @@ class Graphics():
 		self.playerGroup.update()
 		self.torpedoGroup.update()
 		self.subGroup.update()
+		
+		self.checkCollisions()
+	
+	def checkCollisions(self):
+		# For each collision between our torpedos and our enemies, kill them both.
+		# the 1,1 tells pygame to kill both. If for instance we wanted to only kill the torpedo 1,0 would suffice.
+		for hit in pygame.sprite.groupcollide(self.torpedoGroup, self.subGroup, 1, 1):
+			pass
+
 
 	def drawScreen(self):
 		# draw background
