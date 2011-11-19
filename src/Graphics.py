@@ -7,6 +7,7 @@ import util
 
 from Actor import Actor
 from Torpedo import Torpedo
+from Enemy import Enemy
 from Vector2 import Vector2
 from config import *
 from pygame.locals import *
@@ -27,9 +28,7 @@ class Graphics():
 		self.bgGroup = pygame.sprite.OrderedUpdates()
 		self.playerGroup = pygame.sprite.RenderPlain()
 		self.torpedoGroup = pygame.sprite.RenderPlain()
-
-		# Load image of torpedo, also returns rect but we ignore this
-		self.torpImage, tmp = util.loadImage(TORPEDO_IMAGE)
+		self.subGroup = pygame.sprite.RenderPlain()
 
 	def loadBackground(self, imagefile):
 		# Create background object
@@ -47,11 +46,17 @@ class Graphics():
 
 		# add it to render group
 		self.torpedoGroup.add(torp)
+	
+	def addSub(self):
+		# Create new sub
+		sub = Enemy()
+		self.subGroup.add(sub)
 
 	def update(self):
 		self.bgGroup.update()
 		self.playerGroup.update()
 		self.torpedoGroup.update()
+		self.subGroup.update()
 
 	def drawScreen(self):
 		# draw background
@@ -60,6 +65,8 @@ class Graphics():
 		self.playerGroup.draw(self.screen)
 		# draw torpedos
 		self.torpedoGroup.draw(self.screen)
+		# draw enemies
+		self.subGroup.draw(self.screen)
 
 		pygame.display.flip()
 

@@ -20,8 +20,8 @@ class Game():
 		self.g.loadBackground(BACKGROUND_IMAGE)
 
 		# Initialize our player and set its position to (50,50)
-		self.player = self.g.loadPlayer(SUB_IMAGE)
-		self.player.setPos(50,50)
+		self.player = self.g.loadPlayer(PLAYER_IMAGE)
+		self.player.setPos(START_X, START_Y)
 
 		# game clock
 		self.clock = pygame.time.Clock()
@@ -30,12 +30,20 @@ class Game():
 		self.gameLoop()
 	
 	def gameLoop(self):
+		self.frameCountSub = 0
+
 		while True:
 			# ensure we're running at a stable FPS
 			self.clock.tick(FRAME_RATE)
 
 			# handle user input
 			self.handle_input()
+
+			# possibly create new enemy
+			self.frameCountSub += 1
+			if self.frameCountSub == ENEMY_SPAWN_INTERVAL:
+				self.g.addSub()
+				self.frameCountSub = 0
 
 			# update positions, handle collisions, etc
 			self.g.update()
@@ -65,10 +73,10 @@ class Game():
 		if event.type == pygame.KEYDOWN:
 			# move left
 			if event.key == K_LEFT:
-				self.player.setVel(Vector2(-2,0))
+				self.player.setVel(Vector2(-1,0) * PLAYER_SPEED)
 			# move right
 			elif event.key == K_RIGHT:
-				self.player.setVel(Vector2(2,0))
+				self.player.setVel(Vector2(1,0) * PLAYER_SPEED)
 
 			# fire
 			elif event.key == K_SPACE:

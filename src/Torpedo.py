@@ -18,7 +18,7 @@ class Torpedo(Actor.Actor):
 
 	def __init__(self, x, y):
 		# Call super constructor and assign its image to TORPEDO_IMAGE
-		super(Torpedo,self).__init__(TORPEDO_IMAGE)
+		super(Torpedo,self).__init__()
 
 		# Load image on first torpedo
 		if Torpedo.loadedImage == 0:
